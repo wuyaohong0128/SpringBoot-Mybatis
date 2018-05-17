@@ -1,5 +1,7 @@
 package cn.genomics.hg.web;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +26,8 @@ import io.swagger.annotations.ApiParam;
 @Api(description = "【springboot-mybatis-demo接口API】")
 public class UserContrroller {
 	
+	final static Logger log = LoggerFactory.getLogger(UserContrroller.class);
+	
 	
 	@Autowired
     private UserService userService;
@@ -32,6 +36,7 @@ public class UserContrroller {
 	@ResponseBody
 	@PostMapping(value = "/user/add", produces = { "application/json;charset=UTF-8" })
 	public int addUser(@RequestBody @ApiParam(name="用户类",value="传入json格式",required=true) User user) {
+		log.info("------------------测试 info-------------------");
 		return userService.addUser(user);
 	}
 	
